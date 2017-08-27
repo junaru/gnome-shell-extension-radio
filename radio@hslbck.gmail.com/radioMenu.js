@@ -404,7 +404,7 @@ const RadioMenuButton = new Lang.Class({
     },
 
     _destroyVolumeSlider: function(){
-	//this.separator3.destroy();
+	this.separator3.destroy();
 	this.volumeIcon.destroy();
 	this.volumeSlider.actor.destroy();
 	this.volumeSliderBox.destroy();
