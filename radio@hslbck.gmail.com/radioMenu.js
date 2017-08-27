@@ -391,7 +391,7 @@ const RadioMenuButton = new Lang.Class({
 	// Create volume slider box
 	this.volumeSliderBox = new PopupMenu.PopupBaseMenuItem();
 	this.volumeIcon = new St.Icon({ style_class: 'popup-menu-icon', icon_name: 'audio-speakers-symbolic' });
-	this.volumeSlider = new Slider.Slider(Math.sqrt(this._settings.get_double(SETTING_VOLUME_LEVEL)));
+	this.volumeSlider = new Slider.Slider(Math.pow(this._settings.get_double(SETTING_VOLUME_LEVEL), 1/3));
 	this.volumeSliderBox.actor.add(this.volumeIcon);
 	this.volumeSliderBox.actor.add(this.volumeSlider.actor, { expand: true });
 	

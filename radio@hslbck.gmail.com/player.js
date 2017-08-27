@@ -71,7 +71,7 @@ function setup(){
 }
 
 function setVolume(volume){
-    let level = Math.pow(volume,2);
+    let level = Math.pow(volume, 3);
     if(this.source){
 	this.source.set_property("volume", level);
     }
