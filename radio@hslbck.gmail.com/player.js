@@ -60,6 +60,12 @@ function setup(){
     readTags();
 }
 
+function setVolume(level){
+    if(this.source){
+	this.source.set_property("volume", level);
+    }
+}
+
 function readTags(){
     sourceBus = pipeline.get_bus();
     sourceBus.add_signal_watch();
