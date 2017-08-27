@@ -17,6 +17,7 @@ const Extension = imports.misc.extensionUtils.getCurrentExtension();
 const Channel = Extension.imports.channel;
 const MyE = Extension.imports.extension;
 const Convert = Extension.imports.convertCharset;
+const Convenience = Extension.imports.convenience;
 
 Gst.init(null, 0);
 
@@ -26,6 +27,9 @@ let pipeline;
 let source;
 let sourceBus;
 let sourceBusId;
+let settings;
+
+const SETTING_VOLUME_LEVEL = 'volume-level';
 
 const Player = new Lang.Class({
     Name: 'Player',
@@ -35,6 +39,10 @@ const Player = new Lang.Class({
         pipeline = new Gst.Pipeline({
             name: "Stream"
         });
+
+	//read settings
+        settings = Convenience.getSettings();
+
         setup();
     }
 });
@@ -56,14 +64,18 @@ function changeChannel(channel) {
 function setup(){
     source = Gst.ElementFactory.make("playbin", "source");
     source.set_property("uri", currentChannel.getUri());
+
+    source.set_property("volume", settings.get_double(SETTING_VOLUME_LEVEL) );
     pipeline.add(source);
     readTags();
 }
 
-function setVolume(level){
+function setVolume(volume){
+    let level = Math.pow(volume,2);
     if(this.source){
 	this.source.set_property("volume", level);
     }
+    settings.set_double(SETTING_VOLUME_LEVEL, level);
 }
 
 function readTags(){

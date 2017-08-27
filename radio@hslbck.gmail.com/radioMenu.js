@@ -281,7 +281,6 @@ const RadioMenuButton = new Lang.Class({
 
     _onVolumeSliderValueChanged: function(slider, value, property){
     	Player.setVolume(value);
-	this._settings.set_double(SETTING_VOLUME_LEVEL, value);
     },
 
     // start streaming
@@ -392,7 +391,7 @@ const RadioMenuButton = new Lang.Class({
 	// Create volume slider box
 	this.volumeSliderBox = new PopupMenu.PopupBaseMenuItem();
 	this.volumeIcon = new St.Icon({ style_class: 'popup-menu-icon', icon_name: 'audio-speakers-symbolic' });
-	this.volumeSlider = new Slider.Slider(this._settings.get_double(SETTING_VOLUME_LEVEL));
+	this.volumeSlider = new Slider.Slider(Math.sqrt(this._settings.get_double(SETTING_VOLUME_LEVEL)));
 	this.volumeSliderBox.actor.add(this.volumeIcon);
 	this.volumeSliderBox.actor.add(this.volumeSlider.actor, { expand: true });
 	
