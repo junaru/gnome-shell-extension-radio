@@ -1,6 +1,7 @@
 /*
     Copyright (C) 2015-2016 hslbck <hslbck@gmail.com>
     Copyright (C) 2016 Niels Rune Brandt <nielsrune@hotmail.com>
+    Copyright (C) 2017 Justinas Narusevicius <github@junaru.com>
     This file is distributed under the same license as the gnome-shell-extension-radio package.
 */
 /**
